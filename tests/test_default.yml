@@ -10,7 +10,7 @@
 
   tasks:
   - name: Add unzip for Ansible unarchive module
-    yum:
+    package:
       name: unzip
       state: present
 
@@ -43,7 +43,7 @@
 
   - name: Add Java to run security audit
     when: rhelcis7_ciscat.stat.exists
-    yum:
+    package:
       name: "{{ item }}"
       state: present
     with_items:

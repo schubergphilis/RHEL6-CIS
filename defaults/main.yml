@@ -322,8 +322,9 @@ rhel7cis_rsh_required: false
 rhel7cis_ypbind_required: false
 
 # Time Synchronization
-rhel7cis_time_synchronization: chrony
+rhel7cis_time_synchronization: "{{ 'ntp' if ansible_os_family == 'Suse' else 'chrony' }}"
 #rhel7cis_time_synchronization: ntp
+#rhel7cis_time_synchronization: chrony
 
 rhel7cis_time_synchronization_servers:
     - 0.pool.ntp.org
@@ -337,8 +338,9 @@ rhel7cis_host_allow:
     - "172.16.0.0/255.240.0.0"
     - "192.168.0.0/255.255.0.0"
 
-rhel7cis_firewall: firewalld
+rhel7cis_firewall: "{{ 'iptables' if  ansible_os_family == 'Suse' else 'firewalld' }}"
 #rhel7cis_firewall: iptables
+#rhel7cis_firewall: firewalld
 
 rhel7cis_firewall_services:
     - ssh
@@ -373,6 +375,7 @@ rhel7cis_pass:
     max_days: 90
     min_days: 7
     warn_age: 7
+
 # Syslog system
 rhel7cis_syslog: rsyslog
 #rhel7cis_syslog: syslog-ng

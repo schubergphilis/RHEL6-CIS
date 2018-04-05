@@ -616,6 +616,21 @@
   register: grub_cfg
   when:
       - rhel7cis_rule_1_4_1
+      - ansible_os_family == 'RedHat'
+  tags:
+      - level1
+      - scored
+      - grub
+      - patch
+      - rule_1.4.1
+
+- name: "SCORED | 1.4.1 | PATCH | Ensure permissions on bootloader config are configured"
+  stat:
+      path: /boot/grub2/grub.cfg
+  register: grub_cfg
+  when:
+      - rhel7cis_rule_1_4_1
+      - ansible_os_family == 'Suse'
   tags:
       - level1
       - scored

@@ -331,6 +331,8 @@ rhel7cis_time_synchronization_servers:
     - 1.pool.ntp.org
     - 2.pool.ntp.org
     - 3.pool.ntp.org
+# 3.4.1 Ensure TCP Wrappers is installed (Scored)
+rhel7cis_tcpwrapper: "{{ 'tcpd' if ansible_os_family == 'Suse' else 'tcp_wrappers'}}"
 
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 rhel7cis_host_allow:

@@ -616,11 +616,24 @@
             replace: '\1 027'
   when:
       - rhel7cis_rule_5_4_4
+      - ansible_os_family == 'RedHat'
   tags:
       - level1
       - level2
       - patch
       - rule_5.4.4
+
+- name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive"
+  command: /bin/true
+  when:
+    - rhel7cis_rule_5_4_4
+    - ansible_os_family == 'Suse'
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_5.4.4
+      - notimplemented
 
 - name: "NOTSCORED | 5.5 | PATCH | Ensure root login is restricted to system console"
   command: /bin/true

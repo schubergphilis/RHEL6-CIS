@@ -311,7 +311,7 @@
       - notimplemented
 
 - name: "SCORED | 4.2.3 | PATCH | Ensure rsyslog or syslog-ng is installed"
-  yum:
+  package:
       name: "{{ rhel7cis_syslog }}"
       state: present
   when:

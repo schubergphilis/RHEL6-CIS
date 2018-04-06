@@ -253,8 +253,8 @@
       - rule_3.3.3
 
 - name: "SCORED | 3.4.1 | PATCH | Ensure TCP Wrappers is installed"
-  yum:
-    name: tcp_wrappers
+  package:
+    name: "{{ rhel7cis_tcpwrapper }}"
     state: present
   when:
       - rhel7cis_rule_3_4_1
@@ -368,7 +368,7 @@
       - rule_3.5.4
 
 - name: "SCORED | 3.6 | PATCH | Ensure firewalld is installed and started | CUSTOM"
-  yum:
+  package:
       name: firewalld
       state: present
   when: rhel7cis_firewall == "firewalld"
@@ -389,7 +389,7 @@
       - rule_3.6
 
 - name: "SCORED | 3.6.1 | PATCH | Ensure iptables is installed"
-  yum:
+  package:
       name: iptables
       state: present
   when:

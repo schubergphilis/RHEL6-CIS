@@ -9,8 +9,8 @@
 
 - name: Check OS version details
   fail:
-      msg: "This role can only be run against RHEL7/Suse12. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
-  when: (ansible_os_family == 'RedHat' and ansible_distribution_major_version not in rhel7cis_rhel_version) or
+      msg: "This role can only be run against RHEL6/RHEL7/Suse12. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
+  when: (ansible_os_family == 'RedHat' and not (ansible_distribution_major_version in rhel7cis_rhel_version)) or
         (ansible_os_family == 'Suse' and ansible_distribution_major_version is version('12', '!='))
   tags:
       - always

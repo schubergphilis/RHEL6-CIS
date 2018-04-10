@@ -379,6 +379,7 @@
       - rhel7cis_rule_1_1_14
       - item.mount == "/home"
   with_items: "{{ ansible_mounts }}"
+  no_log: true
   tags:
       - level1
       - level2

@@ -5,5 +5,7 @@
   command: yum -y autoremove
   changed_when: no
   ignore_errors: yes
+  when:
+      - ansible_os_family == 'RedHat'
   tags:
       - skip_ansible_lint

@@ -424,14 +424,14 @@
       regexp: '^{{ item.key }}'
       line: '{{ item.key }} = {{ item.value }}'
   with_items:
-      - { key: 'minlen',  value: '14' }
+      - { key: 'minlen', value: '14' }
       - { key: 'dcredit', value: '-1' }
       - { key: 'ucredit', value: '-1' }
       - { key: 'ocredit', value: '-1' }
       - { key: 'lcredit', value: '-1' }
   when:
       - rhel7cis_rule_5_3_1
-      - ansible_os_family == 'RedHat'
+      - ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'
   tags:
       - level1
       - level2
@@ -445,14 +445,37 @@
       regexp: '^{{ item.key }}'
       line: '{{ item.key }} = {{ item.value }}'
   with_items:
-      - { key: 'minlen',  value: '-1' }
+      - { key: 'minlen', value: '-1' }
       - { key: 'dcredit', value: '-1' }
       - { key: 'ucredit', value: '-1' }
       - { key: 'ocredit', value: '-1' }
       - { key: 'lcredit', value: '-1' }
   when:
       - rhel7cis_rule_5_3_1
-      - ansible_os_family == 'RedHat'
+      - ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_5.3.1
+
+- name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
+  block:
+      - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
+        lineinfile:
+            state: present
+            dest: /etc/pam.d/password-auth
+            regexp: '^password requisite pam_cracklib.so'
+            line: "password requisite pam_cracklib.so try_first_pass retry=3 minlen=14 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1"
+      - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
+        lineinfile:
+            state: present
+            dest: /etc/pam.d/system-auth
+            regexp: '^password requisite pam_cracklib.so'
+            line: "password requisite pam_cracklib.so try_first_pass retry=3 minlen=14 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1"
+  when:
+      - rhel7cis_rule_5_3_1
+      - ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
   tags:
       - level1
       - level2
@@ -472,7 +495,7 @@
       - level1
       - level2
       - patch
-      - rule_5.3.1      
+      - rule_5.3.1
 
 - name: "SCORED | 5.3.2 | PATCH | Ensure lockout for failed password attempts is configured"
   command: /bin/true
@@ -520,7 +543,7 @@
       - level1
       - level2
       - patch
-      - rule_5.3.4      
+      - rule_5.3.4
       - notimplemented
 
 - name: "SCORED | 5.4.1.1 | PATCH | Ensure password expiration is 90 days or less"
@@ -626,8 +649,8 @@
 - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive"
   command: /bin/true
   when:
-    - rhel7cis_rule_5_4_4
-    - ansible_os_family == 'Suse'
+      - rhel7cis_rule_5_4_4
+      - ansible_os_family == 'Suse'
   tags:
       - level1
       - level2

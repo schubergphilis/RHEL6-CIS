@@ -1,24 +1,24 @@
 ---
 # tasks file for RHEL7-CIS
 - name: Check OS family
-  fail: 
+  fail:
       msg: "This role can only be run against RHEL or Suse distributions. {{ ansible_os_family }}/{{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
   when: ansible_os_family is not in ["Suse", "RedHat"]
   tags:
-    - always
+      - always
 
 - name: Check OS version details
   fail:
       msg: "This role can only be run against RHEL7/Suse12. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
-  when: (ansible_os_family == 'RedHat' and ansible_distribution_major_version is version('7', '!=')) or
-        (ansible_os_family == 'Suse' and ansible_distribution_major_version is version('12', '!=')) 
+  when: (ansible_os_family == 'RedHat' and ansible_distribution_major_version not in rhel7cis_rhel_version) or
+        (ansible_os_family == 'Suse' and ansible_distribution_major_version is version('12', '!='))
   tags:
       - always
 
 - name: Check ansible version
   fail:
       msg: You must use ansible 2.5 or greater
-  when: ansible_version.full is version('2.5', '<') 
+  when: ansible_version.full is version('2.5', '<')
   tags:
       - always
 

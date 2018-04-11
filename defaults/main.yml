@@ -3,6 +3,10 @@
 rhel7cis_rhel_version: ['6','7']
 rhel7cis_service_status: ['loaded','running...']
 rhel7cis_systemd: "{{ false if (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6') else true }}"
+rhel7cis_rhel6: "{{ true if (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6') else false }} "
+rhel7cis_rhel7: "{{ true if (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7') else false }} "
+rhel7cis_sles12: "{{ true if (ansible_os_family == 'Suse' and ansible_distribution_major_version == '12') else false }} "
+
 # RHEL6 /sbin/service exit codes which are OK. 
 # 0 - service running
 # 3 - service found, but stopped. 
@@ -353,7 +357,7 @@ rhel7cis_host_allow:
     - "172.16.0.0/255.240.0.0"
     - "192.168.0.0/255.255.0.0"
 
-rhel7cis_firewall: "{{ 'iptables' if  ansible_os_family == 'Suse' or (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6') else 'firewalld' }}"
+rhel7cis_firewall: "{{ 'iptables' if  ansible_os_family == 'Suse' or rhel7cis_rhel6 else 'firewalld' }}"
 # rhel7cis_firewall: iptables
 # rhel7cis_firewall: firewalld
 

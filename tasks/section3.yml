@@ -382,7 +382,9 @@
       name: firewalld
       state: started
       enabled: yes
-  when: rhel7cis_firewall == "firewalld"
+  when: 
+      - rhel7cis_firewall == "firewalld"
+      - rhel7cis_rule_3_6_1
   tags:
       - level1
       - patch
@@ -412,6 +414,19 @@
       - level1
       - patch
       - rule_3.6.1
+      
+- name: "SCORED | 3.6.1 | PATCH | Ensure iptables is installed and started"
+  command: /bin/true
+  changed_when: no
+  when:
+      - rhel7cis_firewall == "iptables"
+      - rhel7cis_rule_3_6_1
+      - ansible_os_family == 'Suse'
+  tags:
+      - level1
+      - patch
+      - rule_3.6.1
+      - notimplemented
 
 - name: "SCORED | 3.6.2 | PATCH | Ensure default deny firewall policy"
   lineinfile:

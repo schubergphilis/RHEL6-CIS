@@ -186,6 +186,7 @@
 
 - name: "SCORED | 6.1.9 | PATCH | Ensure no unowned files or directories exist (Scored)"
   command: /bin/true
+  changed_when: no
   when:
       - rhel7cis_rule_6_1_9
       - ansible_os_family == 'Suse'
@@ -532,3 +533,4 @@
       - level2
       - patch
       - rule_6.2.19
+      - notimplemented

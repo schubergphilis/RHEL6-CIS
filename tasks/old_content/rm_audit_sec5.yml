@@ -490,9 +490,9 @@
 
 - name: "SCORED | 5.4.4 | AUDIT | Ensure default user umask is 027 or more restrictive"
   command: /bin/true
+  chagned_when: no
   register: result
   always_run: yes
-  changed_when: no
   ignore_errors: yes
   tags:
       - level1
@@ -503,25 +503,27 @@
 
 - name: "NOTSCORED | 5.5 | AUDIT | Ensure root login is restricted to system console"
   command: /bin/true
+  changed_when: no
   register: result
   always_run: yes
-  changed_when: no
   ignore_errors: yes
   tags:
       - level1
       - level2
       - audit
       - rule_5.5
+      - notimplemented
 
 
 - name: "SCORED | 5.6 | AUDIT | Ensure access to the su command is restricted"
   command: /bin/true
+  changed_when: no
   register: result
   always_run: yes
-  changed_when: no
   ignore_errors: yes
   tags:
       - level1
       - level2
       - audit
       - rule_5.6
+      - notimplemented

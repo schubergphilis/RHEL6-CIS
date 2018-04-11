@@ -1,6 +1,6 @@
 - name: "SCORED | 5.1.1 | PATCH | Ensure cron daemon is enabled"
   service:
-      name: crond
+      name: "{{ 'cron' if ansible_os_family == 'Suse' else 'crond'}}"
       enabled: yes
   when:
       - rhel7cis_rule_5_1_1
@@ -439,27 +439,6 @@
       - rule_5.3.1
 
 - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
-  lineinfile:
-      state: present
-      dest: /etc/security/pwquality.conf
-      regexp: '^{{ item.key }}'
-      line: '{{ item.key }} = {{ item.value }}'
-  with_items:
-      - { key: 'minlen', value: '-1' }
-      - { key: 'dcredit', value: '-1' }
-      - { key: 'ucredit', value: '-1' }
-      - { key: 'ocredit', value: '-1' }
-      - { key: 'lcredit', value: '-1' }
-  when:
-      - rhel7cis_rule_5_3_1
-      - ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.3.1
-
-- name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
   block:
       - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
         lineinfile:
@@ -475,7 +454,7 @@
             line: "password requisite pam_cracklib.so try_first_pass retry=3 minlen=14 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1"
   when:
       - rhel7cis_rule_5_3_1
-      - ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
+      - rhel7cis_rhel6
   tags:
       - level1
       - level2
@@ -536,6 +515,7 @@
 
 - name: "SCORED | 5.3.4 | PATCH | Ensure password hashing algorithm is SHA-512"
   command: /bin/true
+  changed_when: no
   when:
       - rhel7cis_rule_5_3_4
       - ansible_os_family == 'Suse'
@@ -648,6 +628,7 @@
 
 - name: "SCORED | 5.4.4 | PATCH | Ensure default user umask is 027 or more restrictive"
   command: /bin/true
+  changed_when: no
   when:
       - rhel7cis_rule_5_4_4
       - ansible_os_family == 'Suse'

@@ -6,6 +6,6 @@
   changed_when: no
   ignore_errors: yes
   when:
-      - ansible_os_family == 'RedHat'
+      - rhel7cis_rhel7
   tags:
       - skip_ansible_lint

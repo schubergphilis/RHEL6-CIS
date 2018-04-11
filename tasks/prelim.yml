@@ -31,21 +31,21 @@
 
 - name: "PRELIM | Check if prelink package is installed"
   command: rpm -q prelink
+  warn: no
   register: prelink_installed
   changed_when: no
   failed_when: no
   check_mode: no
-  warn: false
   tags:
       - skip_ansible_lint
 
 - name: "PRELIM | Check if postfix package is installed"
   command: rpm -q postfix
+  warn: no
   register: postfix_installed
   changed_when: no
   failed_when: no
   check_mode: no
-  warn: false
   tags:
       - skip_ansible_lint
 
@@ -55,14 +55,14 @@
   register: xinetd_service_status
   changed_when: no
   check_mode: no
-  warn: false
+  warn: no
 
 - name: "PRELIM | Check for ntpd service"
   shell: "{{ 'service ntpd status | cut -d \" \" -f 6' if ansible_service_mgr == 'upstart' else 'systemctl show ntpd | grep LoadState | cut -d = -f 2' }}"
   register: ntpd_service_status
   changed_when: no
   check_mode: no
-  warn: false
+  warn: no
 
 - name: "PRELIM | Check for chronyd service"
   shell: "{{ 'service chronyd status | cut -d \" \" -f 6' if ansible_service_mgr == 'upstart' else 'systemctl show chronyd | grep LoadState | cut -d = -f 2' }}"

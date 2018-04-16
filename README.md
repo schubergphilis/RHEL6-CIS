@@ -1,10 +1,12 @@
-RHEL 7 CIS STIG
+Linux CIS - Supports RHEL6/7, CentOS6/7, SLES12
 ================
-
-[![Build Status](https://travis-ci.org/MindPointGroup/RHEL7-CIS.svg?branch=devel)](https://travis-ci.org/MindPointGroup/RHEL7-CIS)
-[![Ansible Role](https://img.shields.io/ansible/role/16089.svg)](https://galaxy.ansible.com/MindPointGroup/RHEL7-CIS/)
+Based on the exellent work done by the MindPointGroup [Ansible Role](https://img.shields.io/ansible/role/16089.svg)](https://galaxy.ansible.com/MindPointGroup/RHEL7-CIS/)
 
 Configure RHEL/Centos 7 machine to be [CIS](https://www.cisecurity.org/cis-benchmarks/) compliant. Level 1 and 2 findings will be corrected by default.
+
+Since Schuberg Philis still wants to merge the work from the MindPointGroup into this fork, we have kept the tags & naming conventions as close as possible to the original version (i.e. all tags still start with rhel7cis\_ .). 
+
+## Warning on use
 
 This role **will make changes to the system** that could break things. This is not an auditing tool but rather a remediation tool to be used after an audit has been conducted.
 
@@ -17,15 +19,17 @@ If you want to install this via the `ansible-galaxy` command you'll need to run 
 With this in the file requirements.yml:
 
 ```
-- src: https://github.com/MindPointGroup/RHEL7-CIS.git
+- src: https://github.com/schubergphilis/RHEL7-CIS.git
 ```
 
 Based on [CIS RedHat Enterprise Linux 7 Benchmark v2.1.1 - 01-31-2017 ](https://community.cisecurity.org/collab/public/index.php).
 
 
 Support for the following ruleset (however ruleset descriptions might not match the numbering of CIS):
-RHEL 6 CIS 2.1.0 (https://community.cisecurity.org/collab/public/index.php).
-Suse 12 CIS 2.0.0 (https://community.cisecurity.org/collab/public/index.php).
+[RHEL 6 CIS 2.1.0](https://community.cisecurity.org/collab/public/index.php).
+[CentOS 6 CIS 2.1.0](https://community.cisecurity.org/collab/public/index.php).
+[CentOS 7 CIS 2.1.0](https://community.cisecurity.org/collab/public/index.php).
+[Suse 12 CIS 2.0.0](https://community.cisecurity.org/collab/public/index.php).
 
 This repo originated from work done by [Sam Doran](https://github.com/samdoran/ansible-role-stig)
 

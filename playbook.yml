@@ -12,4 +12,4 @@
         - which
 
   roles:
-    - role: RHEL7-CIS
+    - role: RHEL6-CIS

@@ -5,7 +5,5 @@
   command: yum -y autoremove
   changed_when: no
   ignore_errors: yes
-  when:
-      - rhel7cis_rhel7
   tags:
       - skip_ansible_lint

@@ -18,4 +18,7 @@ include/
 lib/
 pip-selfcheck.json
 share/
+.vagrant/
+.venv/
+Vagrantfile
 

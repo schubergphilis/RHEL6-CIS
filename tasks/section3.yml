@@ -382,7 +382,7 @@
       name: firewalld
       state: started
       enabled: yes
-  when: 
+  when:
       - rhel6cis_firewall == "firewalld"
       - rhel6cis_rule_3_6_1
   tags:

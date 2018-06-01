@@ -17,7 +17,7 @@ If you want to install this via the `ansible-galaxy` command you'll need to run 
 With this in the file requirements.yml:
 
 ```
-- src: https://github.com/schubergphilis/RHEL7-CIS.git
+- src: https://github.com/schubergphilis/RHEL6-CIS.git
 ```
 
 Based on [CIS RedHat Enterprise Linux 6 Benchmark v2.1.0 - 12-27-2017 ](https://community.cisecurity.org/collab/public/index.php).
@@ -162,7 +162,7 @@ Ansible > 2.2
 Example Playbook
 -------------------------
 
-This sample playbook should be run in a folder that is above the main RHEL7-CIS / RHEL7-CIS-devel folder.
+This sample playbook should be run in a folder that is above the main RHEL6-CIS / RHEL6-CIS-devel folder.
 
 ```
 - name: Harden Server
@@ -170,7 +170,7 @@ This sample playbook should be run in a folder that is above the main RHEL7-CIS 
   become: yes
 
   roles:
-    - RHEL7-CIS
+    - RHEL6-CIS
 ```
 
 Tags

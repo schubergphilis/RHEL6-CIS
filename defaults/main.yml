@@ -7,7 +7,7 @@ rhel6cis_service_status: ['loaded','running...']
 # 6 - service not found
 rhel6cis_service_status_ok_exit_codes: [0,3,6]
 
-# defaults file for RHEL7-CIS
+# defaults file for RHEL6-CIS
 rhel6cis_skip_for_travis: false
 
 rhel6cis_notauto: false
@@ -376,8 +376,7 @@ rhel6cis_sshd:
     clientalivecountmax: 3
     clientaliveinterval: 300
     ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
-    macs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
-    logingracetime: 60
+    macs: "hmac-sha2-512,hmac-sha2-256"
     # - make sure you understand the precedence when working with these values!!
     #allowusers:
     #allowgroups: systems dba

@@ -222,11 +222,9 @@
       - rule_1.1.1.8
       - vfat
 
-- name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp | enable and start/restart tmp.mount"
-  service:
-      name: tmp.mount
-      enabled: yes
-      state: started
+- name: "SCORED | 1.1.2 | PATCH | Ensure separate partition exists for /tmp"
+  command: /bin/true
+  changed_when: no
   when:
       - rhel6cis_rule_1_1_2
   tags:
@@ -234,6 +232,7 @@
       - scored
       - patch
       - rule_1.1.2
+      - notimplemented
 
 - name: "SCORED | 1.1.6 | PATCH | Ensure separate partition exists for /var"
   shell: mount | grep "on /var "
@@ -634,20 +633,18 @@
       - patch
       - rule_1.4.2
 
-- name: "NOTSCORED | 1.4.3 | PATCH | Ensure authentication required for single user mode"
-  block:
-      - name: "NOTSCORED | 1.4.3 | PATCH | Ensure authentication required for single user mode - Emergency"
-        lineinfile:
-            dest: /etc/sysconfig/init
-            regexp: '^SINGLE'
-            line: '^SINGLE=/sbin/sulogin'
-        when:
-            - rhel6cis_rule_1_4_3
-        tags:
-            - level1
-            - level2
-            - patch
-            - rule_1.4.3
+- name: "SCORED | 1.4.3 | PATCH | Ensure authentication required for single user mode - Emergency"
+  lineinfile:
+      dest: /etc/sysconfig/init
+      regexp: '^SINGLE'
+      line: '^SINGLE=/sbin/sulogin'
+  when:
+      - rhel6cis_rule_1_4_3
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_1.4.3
 
 - name: "SCORED | 1.5.1 | PATCH | Ensure core dumps are restricted"
   lineinfile:

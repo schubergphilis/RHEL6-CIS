@@ -233,8 +233,3 @@
   failed_when: rhnsd_service_status.rc not in rhel6cis_service_status_ok_exit_codes
   warn: false
 
-- debug:
-      msg: "Firewall found:{{ rhel6cis_firewall }}; Time sync service found:{{ rhel6cis_time_synchronization }}; Systemd section found : {{ rhel6cis_systemd }}"
-
-- debug:
-      msg: "NTP status: {{ ntpd_service_status.stdout }}"

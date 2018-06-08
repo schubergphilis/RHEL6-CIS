@@ -10,9 +10,9 @@ driver:
   name: docker
 docker:
   containers:
-    - name: docker
-      image: centos/systemd
-      image_version: latest
+    - name: centos6.9
+      image: centos
+      image_version: centos6.9
       privileged: True
       ansible_groups:
         - docker

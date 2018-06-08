@@ -285,12 +285,12 @@
       - patch
       - rule_5.2.10
 
-- name: "SCORED | 5.2.11 | PATCH | Ensure only approved ciphers are used"
+- name: "SCORED | 5.2.111 | PATCH | Ensure only approved MAC algorithms are used"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
-      regexp: '^Ciphers'
-      line: "Ciphers {{ rhel6cis_sshd['ciphers'] }}"
+      regexp: '^MACs'
+      line: "MACs {{ rhel6cis_sshd['macs'] }}"
   when:
       - rhel6cis_rule_5_2_11
   tags:
@@ -299,12 +299,21 @@
       - patch
       - rule_5.2.11
 
-- name: "SCORED | 5.2.12 | PATCH | Ensure only approved MAC algorithms are used"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: '^MACs'
-      line: "MACs {{ rhel6cis_sshd['macs'] }}"
+- name: "SCORED | 5.2.12 | PATCH | Ensure SSH Idle Timeout Interval is configured"
+  block:
+      - name: "SCORED | 5.2.12 | PATCH | Ensure SSH Idle Timeout Interval is configured"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^ClientAliveInterval'
+            line: "ClientAliveInterval {{ rhel6cis_sshd['clientaliveinterval'] }}"
+
+      - name: "SCORED | 5.2.12 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
+        lineinfile:
+            state: present
+            dest: /etc/ssh/sshd_config
+            regexp: '^ClientAliveCountMax'
+            line: "ClientAliveCountMax {{ rhel6cis_sshd['clientalivecountmax'] }}"
   when:
       - rhel6cis_rule_5_2_12
   tags:
@@ -313,21 +322,12 @@
       - patch
       - rule_5.2.12
 
-- name: "SCORED | 5.2.13 | PATCH | Ensure SSH Idle Timeout Interval is configured"
-  block:
-      - name: "SCORED | 5.2.13 | PATCH | Ensure SSH Idle Timeout Interval is configured"
-        lineinfile:
-            state: present
-            dest: /etc/ssh/sshd_config
-            regexp: '^ClientAliveInterval'
-            line: "ClientAliveInterval {{ rhel6cis_sshd['clientaliveinterval'] }}"
-
-      - name: "SCORED | 5.2.13 | PATCH | Ensure SSH ClientAliveCountMax set to <= 3"
-        lineinfile:
-            state: present
-            dest: /etc/ssh/sshd_config
-            regexp: '^ClientAliveCountMax'
-            line: "ClientAliveCountMax {{ rhel6cis_sshd['clientalivecountmax'] }}"
+- name: "SCORED | 5.2.13 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
+  lineinfile:
+      state: present
+      dest: /etc/ssh/sshd_config
+      regexp: '^LoginGraceTime'
+      line: "LoginGraceTime {{ rhel6cis_sshd['logingracetime'] }}"
   when:
       - rhel6cis_rule_5_2_13
   tags:
@@ -336,23 +336,9 @@
       - patch
       - rule_5.2.13
 
-- name: "SCORED | 5.2.14 | PATCH | Ensure SSH LoginGraceTime is set to one minute or less"
-  lineinfile:
-      state: present
-      dest: /etc/ssh/sshd_config
-      regexp: '^LoginGraceTime'
-      line: "LoginGraceTime {{ rhel6cis_sshd['logingracetime'] }}"
-  when:
-      - rhel6cis_rule_5_2_14
-  tags:
-      - level1
-      - level2
-      - patch
-      - rule_5.2.14
-
-- name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited"
+- name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited"
   block:
-      - name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - allowusers"
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowusers"
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
@@ -363,7 +349,7 @@
         when:
             - "rhel6cis_sshd['allowusers']|default('') != ''"
 
-      - name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - allowgroups"
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - allowgroups"
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
@@ -374,7 +360,7 @@
         when:
             - "rhel6cis_sshd['allowgroups']|default('') != ''"
 
-      - name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - denyusers"
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denyusers"
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
@@ -385,7 +371,7 @@
         when:
             - "rhel6cis_sshd['denyusers']|default('') != ''"
 
-      - name: "SCORED | 5.2.15 | PATCH | Ensure SSH access is limited - denygroups"
+      - name: "SCORED | 5.2.14 | PATCH | Ensure SSH access is limited - denygroups"
         lineinfile:
             state: present
             dest: /etc/ssh/sshd_config
@@ -396,26 +382,26 @@
         when:
             - "rhel6cis_sshd['denygroups']|default('') != ''"
   when:
-      - rhel6cis_rule_5_2_15
+      - rhel6cis_rule_5_2_14
   tags:
       - level1
       - level2
       - patch
-      - rule_5.2.15
+      - rule_5.2.14
 
-- name: "SCORED | 5.2.16 | PATCH | Ensure SSH warning banner is configured"
+- name: "SCORED | 5.2.15 | PATCH | Ensure SSH warning banner is configured"
   lineinfile:
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^Banner'
       line: 'Banner /etc/issue.net'
   when:
-      - rhel6cis_rule_5_2_16
+      - rhel6cis_rule_5_2_15
   tags:
       - level1
       - level2
       - patch
-      - rule_5.2.16
+      - rule_5.2.15
 
 - name: "SCORED | 5.3.1 | PATCH | Ensure password creation requirements are configured"
   block:
@@ -529,6 +515,18 @@
       - rule_5.4.1.4
       - notimplemented
 
+- name: "SCORED | 5.4.1.5 | PATCH | Ensure all users last password change date is in the past"
+  command: /bin/true
+  changed_when: no
+  when:
+      - rhel6cis_rule_5_4_1_5
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_5.4.1.5
+      - notimplemented
+
 - name: "SCORED | 5.4.2 | PATCH | Ensure system accounts are non-login"
   command: /bin/true
   changed_when: no
@@ -573,6 +571,16 @@
       - level2
       - patch
       - rule_5.4.4
+
+- name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less"
+  command: /bin/true
+  changed_when: no
+  tags:
+      - level1
+      - level2
+      - patch
+      - rule_5.5
+      - notimplemented
 
 - name: "NOTSCORED | 5.5 | PATCH | Ensure root login is restricted to system console"
   command: /bin/true

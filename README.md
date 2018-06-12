@@ -1,4 +1,4 @@
-RedHat Enterprise Linux 6 CIS compliancy.
+RedHat Enterprise Linux 6 CIS compliancy. [https://travis-ci.org/schubergphilis/RHEL7-CIS.svg?branch=devel]
 ================
 Based on the exellent work done by the MindPointGroup [Ansible Role](https://img.shields.io/ansible/role/16089.svg)](https://galaxy.ansible.com/MindPointGroup/RHEL7-CIS/)
 

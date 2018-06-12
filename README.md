@@ -1,5 +1,7 @@
-RedHat Enterprise Linux 6 CIS compliancy. [https://travis-ci.org/schubergphilis/RHEL7-CIS.svg?branch=devel]
+RedHat Enterprise Linux 6 CIS compliancy. [https://travis-ci.org/schubergphilis/RHEL6-CIS.svg?branch=devel]
 ================
+[![Build Status](https://travis-ci.org/schubergphilis/RHEL6-CIS.svg?branch=devel)](https://travis-ci.org/schubergphilis/RHEL6-CIS)
+
 Based on the exellent work done by the MindPointGroup [Ansible Role](https://img.shields.io/ansible/role/16089.svg)](https://galaxy.ansible.com/MindPointGroup/RHEL7-CIS/)
 
 Configure RHEL/Centos 6 machine to be [CIS](https://www.cisecurity.org/cis-benchmarks/) compliant. Level 1 and 2 findings will be corrected by default.

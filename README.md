@@ -1,4 +1,4 @@
-RedHat Enterprise Linux 6 CIS compliancy. [https://travis-ci.org/schubergphilis/RHEL6-CIS.svg?branch=devel]
+RedHat Enterprise Linux 6 CIS compliancy.
 ================
 [![Build Status](https://travis-ci.org/schubergphilis/RHEL6-CIS.svg?branch=devel)](https://travis-ci.org/schubergphilis/RHEL6-CIS)
 

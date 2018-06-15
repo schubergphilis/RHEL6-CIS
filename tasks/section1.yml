@@ -550,7 +550,7 @@
 
 - name: "SCORED | 1.4.1 | PATCH | Ensure permissions on bootloader config are configured"
   stat:
-      path: /etc/grub2.cfg
+      path: /boot/grub/grub.conf
   register: grub_cfg
   when:
       - rhel6cis_rule_1_4_1
@@ -592,10 +592,10 @@
       - rule_1.4.2
 
 - name: "SCORED | 1.4.2 | PATCH | Ensure bootloader password is set"
-  copy:
-      dest: /boot/grub2/user.cfg
-      content: "GRUB2_PASSWORD={{ grub_pass.passhash }}"
-  notify: generate new grub config
+  lineinfile:
+      dest: /boot/grub/grub.conf
+      regexp: '^password'
+      line: "password --md5 {{ grub.pass.passhash}}"
   when:
       - rhel6cis_set_boot_pass and grub_pass is defined and grub_pass.passhash is defined and grub_pass.passhash != ''
       - rhel6cis_rule_1_4_2
@@ -708,7 +708,7 @@
 
 - name: "SCORED | 1.6.1.1 | PATCH | Ensure SELinux is not disabled in bootloader configuration"
   replace:
-      dest: /etc/default/grub
+      dest: /boot/grub/grub.conf
       regexp: '(selinux|enforcing)\s*=\s*0\s*'
       follow: yes
   register: selinux_grub_patch

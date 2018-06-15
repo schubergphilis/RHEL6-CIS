@@ -713,7 +713,6 @@
       follow: yes
   register: selinux_grub_patch
   ignore_errors: yes
-  notify: generate new grub config
   when:
       - rhel6cis_rule_1_6_1_1
   tags:

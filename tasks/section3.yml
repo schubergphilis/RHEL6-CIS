@@ -371,7 +371,9 @@
   package:
       name: firewalld
       state: present
-  when: rhel6cis_firewall == "firewalld"
+  when: 
+      - rhel6cis_firewall == "firewalld"
+      - rhel6cis_rule_3_6
   tags:
       - level1
       - patch

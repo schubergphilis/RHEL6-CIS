@@ -6,9 +6,12 @@ galaxy_info:
   min_ansible_version: 2.2
 
   platforms:
-  - name: EL
-    versions:
-      - 6
+    - name: rhel
+      versions:
+        - 6
+    - name: centos
+      versions:
+        - 6
 
   galaxy_tags:
     - system

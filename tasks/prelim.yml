@@ -8,13 +8,13 @@
   check_mode: no
 
 - name: "PRELIM | Gather accounts with empty password fields"
-  shell: "cat /etc/shadow | awk -F: '($2 == \"\" ) {j++;print $1; } END {exit j}'"
+  shell: "awk -F: '($2 == \"\" ) {j++;print $1; } END {exit j}' /etc/shadow"
   register: empty_password_accounts
   changed_when: no
   check_mode: no
 
 - name: "PRELIM | Gather UID 0 accounts other than root"
-  shell: "cat /etc/passwd | awk -F: '($3 == 0 && $1 != \"root\") {i++;print $1 } END {exit i}'"
+  shell: "awk -F: '($3 == 0 && $1 != \"root\") {i++;print $1 } END {exit i}' /etc/passwd"
   register: uid_zero_accounts_except_root
   changed_when: no
   check_mode: no
@@ -58,7 +58,7 @@
   warn: no
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for ntpd service"
   shell: service ntpd status | cut -d \" \" -f 6
@@ -68,7 +68,7 @@
   warn: no
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for chronyd service"
   shell: service chronyd status | cut -d \" \" -f 6
@@ -78,7 +78,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for avahi-daemon service"
   shell: service avahi-daemon status | cut -d \" \" -f 6
@@ -88,7 +88,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for cups service"
   shell: service cups status | cut -d \" \" -f 6
@@ -98,7 +98,7 @@
   failed_when: no
   warn: false
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for dhcpd service"
   shell: service dhcpd status | cut -d \" \" -f 6
@@ -108,7 +108,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for slapd service"
   shell: service slapd status | cut -d \" \" -f 6
@@ -118,7 +118,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for nfs service"
   shell: service nfs status | cut -d \" \" -f 6
@@ -128,7 +128,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for rpcbind service"
   shell: service rpcbind status | cut -d \" \" -f 6
@@ -138,7 +138,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for named service"
   shell: service snmpd named | cut -d \" \" -f 6
@@ -148,7 +148,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for vsftpd service"
   shell: service vsftpd status | cut -d \" \" -f 6
@@ -158,7 +158,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for httpd service"
   shell: service httpd status | cut -d \" \" -f 6
@@ -168,7 +168,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for dovecot service"
   shell: service dovecot status | cut -d \" \" -f 6
@@ -178,7 +178,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for smb service"
   shell: service smb status | cut -d \" \" -f 6
@@ -188,7 +188,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for squid service"
   shell: service squid status | cut -d \" \" -f 6
@@ -198,7 +198,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for snmpd service"
   shell: service snmpd status | cut -d \" \" -f 6
@@ -208,7 +208,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for ypserv service"
   shell: service ypserv status | cut -d \" \" -f 6
@@ -218,7 +218,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for rsh.socket service"
   shell: service rsh.socket status | cut -d \" \" -f 6
@@ -228,7 +228,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for rlogin.socket service"
   shell: service rlogin.socket status | cut -d \" \" -f 6
@@ -238,7 +238,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for rexec.socket service"
   shell: service rexec.socket status | cut -d \" \" -f 6
@@ -248,7 +248,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for telnet service"
   shell: service telnet status | cut -d \" \" -f 6
@@ -258,7 +258,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for tftp service"
   shell: service tftp status | cut -d \" \" -f 6
@@ -268,7 +268,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for rsyncd service"
   shell: service rsyncd status | cut -d \" \" -f 6
@@ -278,7 +278,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for ntalk service"
   shell: service ntalk status | cut -d \" \" -f 6
@@ -288,7 +288,7 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint
 
 - name: "PRELIM | Check for autofs service"
   shell: service autofs status | cut -d \" \" -f 6
@@ -298,4 +298,4 @@
   warn: false
   failed_when: no
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint

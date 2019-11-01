@@ -1,5 +1,5 @@
 ---
-rhel6cis_service_status: ['loaded','running...']
+rhel6cis_service_status: ['loaded', 'running...']
 
 # defaults file for RHEL6-CIS
 rhel6cis_skip_for_travis: false
@@ -332,25 +332,25 @@ rhel6cis_time_synchronization: ntp
 #rhel6cis_time_synchronization: chrony
 
 rhel6cis_time_synchronization_servers:
-    - 0.pool.ntp.org
-    - 1.pool.ntp.org
-    - 2.pool.ntp.org
-    - 3.pool.ntp.org
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+  - 3.pool.ntp.org
 # 3.4.1 Ensure TCP Wrappers is installed (Scored)
 rhel6cis_tcpwrapper: tcp_wrappers
 
 # 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
 rhel6cis_host_allow:
-    - "10.0.0.0/255.0.0.0"
-    - "172.16.0.0/255.240.0.0"
-    - "192.168.0.0/255.255.0.0"
+  - "10.0.0.0/255.0.0.0"
+  - "172.16.0.0/255.240.0.0"
+  - "192.168.0.0/255.255.0.0"
 
 rhel6cis_firewall: iptables
 # rhel6cis_firewall: firewalld
 
 rhel6cis_firewall_services:
-    - ssh
-    - dhcpv6-client
+  - ssh
+  - dhcpv6-client
 
 # Warning Banner Content (issue, issue.net, motd)
 rhel6cis_warning_banner: |
@@ -360,35 +360,35 @@ rhel6cis_warning_banner: |
 ## Section4 vars
 
 rhel6cis_auditd:
-    admin_space_left_action: halt
-    max_log_file_action: keep_logs
+  admin_space_left_action: halt
+  max_log_file_action: keep_logs
 
 rhel6cis_logrotate: "daily"
 
 ## Section5 vars
 
 rhel6cis_sshd:
-    clientalivecountmax: 3
-    clientaliveinterval: 300
-    ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
-    macs: "hmac-sha2-512,hmac-sha2-256"
-    # - make sure you understand the precedence when working with these values!!
-    #allowusers:
-    #allowgroups: systems dba
-    #denyusers:
-    #denygroups:
+  clientalivecountmax: 3
+  clientaliveinterval: 300
+  ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
+  macs: "hmac-sha2-512,hmac-sha2-256"
+  # - make sure you understand the precedence when working with these values!!
+  #allowusers:
+  #allowgroups: systems dba
+  #denyusers:
+  #denygroups:
 
 rhel6cis_pass:
-    max_days: 90
-    min_days: 7
-    warn_age: 7
+  max_days: 90
+  min_days: 7
+  warn_age: 7
 
 # Syslog system
 rhel6cis_syslog: rsyslog
 #rhel6cis_syslog: syslog-ng
 
 rhel6cis_vartmp:
-    source: /tmp
-    fstype: none
-    opts: "defaults, nodev, nosuid, noexec, bind"
-    enabled: no
+  source: /tmp
+  fstype: none
+  opts: "defaults, nodev, nosuid, noexec, bind"
+  enabled: no

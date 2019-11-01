@@ -8,7 +8,7 @@
   notify:
       - sysctl flush ipv4 route table
   when:
-      - rhel6cis_is_router == false
+      - not rhel6cis_is_router
       - rhel6cis_rule_3_1_1
   tags:
       - level1
@@ -30,7 +30,7 @@
   notify:
       - sysctl flush ipv4 route table
   when:
-      - rhel6cis_is_router == false
+      - not rhel6cis_is_router
       - rhel6cis_rule_3_1_2
   tags:
       - level1
@@ -208,7 +208,7 @@
   notify:
       - sysctl flush ipv6 route table
   when:
-      - rhel6cis_ipv6_required == true
+      - not rhel6cis_ipv6_required
       - rhel6cis_rule_3_3_1
   tags:
       - level1
@@ -230,7 +230,7 @@
   notify:
       - sysctl flush ipv6 route table
   when:
-      - rhel6cis_ipv6_required == true
+      - not rhel6cis_ipv6_required
       - rhel6cis_rule_3_3_2
   tags:
       - level1
@@ -245,7 +245,7 @@
       line: "options ipv6 disable=1"
       create: yes
   when:
-      - rhel6cis_ipv6_required == false
+      - not rhel6cis_ipv6_required
       - rhel6cis_rule_3_3_3
   tags:
       - level1

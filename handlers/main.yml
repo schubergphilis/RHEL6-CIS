@@ -45,8 +45,8 @@
   check_mode: no
   failed_when: no
   args:
-    warn: no
+      warn: no
   when:
-    - rhel6cis_skip_for_travis == false
+      - not rhel6cis_skip_for_travis
   tags:
-    - skip_ansible_lint
+      - skip_ansible_lint

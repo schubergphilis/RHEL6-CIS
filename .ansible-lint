@@ -1,2 +1,5 @@
 exclude_paths:
-  - ./tasks/old_content
+  - .venv
+  - dist
+  - _CI
+  - molecule

@@ -35,6 +35,7 @@ test-output
 .mr.developer.cfg
 .project
 .pydevproject
+.editorconfig
 
 # Complexity
 output/*.html
@@ -48,7 +49,6 @@ docs/_build
 
 # VirtualEnv
 env
-env*
 .venv
 
 # Mac
@@ -59,8 +59,5 @@ env*
 
 # python env file
 .env
-
-# molecule 
-.molecule
 
 meta/.galaxy_install_info

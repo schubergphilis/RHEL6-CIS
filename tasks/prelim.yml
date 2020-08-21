@@ -31,21 +31,23 @@
 
 - name: "PRELIM | Check if prelink package is installed"
   command: rpm -q prelink
-  warn: no
   register: prelink_installed
   changed_when: no
   failed_when: no
   check_mode: no
+  args:
+    warn: false
   tags:
       - skip_ansible_lint
 
 - name: "PRELIM | Check if postfix package is installed"
   command: rpm -q postfix
-  warn: no
   register: postfix_installed
   changed_when: no
   failed_when: no
   check_mode: no
+  args:
+    warn: false
   tags:
       - skip_ansible_lint
 
@@ -55,8 +57,9 @@
   register: xinetd_service_status
   changed_when: no
   check_mode: no
-  warn: no
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -65,8 +68,9 @@
   register: ntpd_service_status
   changed_when: no
   check_mode: no
-  warn: no
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -75,8 +79,9 @@
   register: chronyd_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -85,8 +90,9 @@
   register: avahi_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -96,7 +102,8 @@
   changed_when: no
   check_mode: no
   failed_when: no
-  warn: false
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -105,7 +112,8 @@
   register: dhcpd_service_status
   changed_when: no
   check_mode: no
-  warn: false
+  args:
+    warn: false
   failed_when: no
   tags:
     - skip_ansible_lint
@@ -115,8 +123,9 @@
   register: slapd_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -125,8 +134,9 @@
   register: nfs_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -135,8 +145,9 @@
   register: rpcbind_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -145,7 +156,8 @@
   register: named_service_status
   changed_when: no
   check_mode: no
-  warn: false
+  args:
+    warn: false
   failed_when: no
   tags:
     - skip_ansible_lint
@@ -155,7 +167,8 @@
   register: vsftpd_service_status
   changed_when: no
   check_mode: no
-  warn: false
+  args:
+    warn: false
   failed_when: no
   tags:
     - skip_ansible_lint
@@ -165,7 +178,8 @@
   register: httpd_service_status
   changed_when: no
   check_mode: no
-  warn: false
+  args:
+    warn: false
   failed_when: no
   tags:
     - skip_ansible_lint
@@ -175,8 +189,9 @@
   register: dovecot_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -185,8 +200,9 @@
   register: smb_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -195,8 +211,9 @@
   register: squid_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -205,8 +222,9 @@
   register: snmpd_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -215,8 +233,9 @@
   register: ypserv_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -225,8 +244,9 @@
   register: rsh_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -235,8 +255,9 @@
   register: rlogin_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -245,8 +266,9 @@
   register: rexec_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -255,8 +277,9 @@
   register: telnet_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -265,8 +288,9 @@
   register: tftp_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -275,9 +299,10 @@
   register: rsyncd_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
-  tags:
+  args:
+    warn: false 
+ tags:
     - skip_ansible_lint
 
 - name: "PRELIM | Check for ntalk service"
@@ -285,8 +310,9 @@
   register: ntalk_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint
 
@@ -295,7 +321,8 @@
   register: autofs_service_status
   changed_when: no
   check_mode: no
-  warn: false
   failed_when: no
+  args:
+    warn: false
   tags:
     - skip_ansible_lint

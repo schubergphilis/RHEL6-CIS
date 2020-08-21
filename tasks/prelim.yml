@@ -302,7 +302,7 @@
   failed_when: no
   args:
     warn: false 
- tags:
+  tags:
     - skip_ansible_lint
 
 - name: "PRELIM | Check for ntalk service"

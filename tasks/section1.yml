@@ -428,10 +428,11 @@
 
 - name: "NOTSCORED | 1.2.1 | PATCH | Ensure package manager repositories are configured"
   command: yum check-update
-  warn: no
   register: yum_configured
   changed_when: no
   failed_when: no
+  args:
+    warn: false
   when:
       - rhel6cis_rule_1_2_1
   tags:
